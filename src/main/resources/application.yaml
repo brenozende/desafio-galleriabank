@@ -1,3 +1,5 @@
 spring:
   application:
     name: desafio-galleriabank
+jwt:
+  secret: ${JWT_SECRET:galleria-bank-jwt-secret-key-32-chars}

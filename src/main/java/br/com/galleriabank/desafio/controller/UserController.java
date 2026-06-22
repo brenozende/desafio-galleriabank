@@ -1,6 +1,7 @@
 package br.com.galleriabank.desafio.controller;
 
 import br.com.galleriabank.desafio.model.dto.request.CreateUserRequest;
+import br.com.galleriabank.desafio.model.dto.response.UserResponse;
 import br.com.galleriabank.desafio.model.entity.User;
 import br.com.galleriabank.desafio.service.UserService;
 import jakarta.validation.Valid;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/usuarios")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -20,14 +21,23 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> createUser(@Valid @RequestBody CreateUserRequest request) {
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody CreateUserRequest request) {
         User user = userService.createUser(request);
-        return ResponseEntity.created(URI.create("/users/" + user.getId())).build();
+        return ResponseEntity
+                .created(URI.create("/usuarios/" + user.getId()))
+                .body(UserResponse.from(user));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findUser(@PathVariable Long id) {
-        return ResponseEntity.ok(userService.findById(id));
+    public ResponseEntity<UserResponse> findUser(@PathVariable Long id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok(UserResponse.from(user));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @Valid @RequestBody CreateUserRequest request) {
+        User user = userService.updateUser(id, request);
+        return ResponseEntity.ok(UserResponse.from(user));
     }
 
     @DeleteMapping("/{id}")

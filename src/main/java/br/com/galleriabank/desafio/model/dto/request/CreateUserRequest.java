@@ -2,7 +2,6 @@ package br.com.galleriabank.desafio.model.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 
 public record CreateUserRequest (
     @NotBlank
@@ -10,7 +9,7 @@ public record CreateUserRequest (
     String name,
 
     @NotBlank
-    String login,
+    String username,
 
     @NotBlank
     String password
