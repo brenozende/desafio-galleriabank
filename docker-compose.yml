@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: galleriabank-postgres
+    environment:
+      POSTGRES_DB: galleriabank
+      POSTGRES_USER: galleriabank
+      POSTGRES_PASSWORD: galleriabank
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U galleriabank -d galleriabank"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
