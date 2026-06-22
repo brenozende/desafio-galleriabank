@@ -2,6 +2,8 @@ package br.com.galleriabank.desafio.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(
@@ -10,6 +12,8 @@ import jakarta.validation.Valid;
                 @UniqueConstraint(columnNames = "login")
         }
 )
+@Getter
+@Setter
 public class User {
 
     @Id
