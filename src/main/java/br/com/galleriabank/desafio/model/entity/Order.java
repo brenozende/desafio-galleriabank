@@ -15,7 +15,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long orderNumber;
     private LocalDateTime emissionDate;
     private String description;
 
