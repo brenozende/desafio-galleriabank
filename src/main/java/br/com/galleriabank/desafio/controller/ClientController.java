@@ -10,10 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/clientes")
 @RequiredArgsConstructor
+@CrossOrigin
 public class ClientController {
     private final ClientService clientService;
 
@@ -29,6 +31,12 @@ public class ClientController {
     public ResponseEntity<?> findClient(@PathVariable Long id) {
         Client client = clientService.findClient(id);
         return ResponseEntity.ok(client);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> listClients() {
+        List<Client> clients = clientService.listClients();
+        return ResponseEntity.ok(clients);
     }
 
     @PutMapping("/{id}")

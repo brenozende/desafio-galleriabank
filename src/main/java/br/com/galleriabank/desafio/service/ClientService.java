@@ -10,6 +10,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ClientService {
@@ -49,5 +51,9 @@ public class ClientService {
         }
 
         clientRepository.delete(client);
+    }
+
+    public List<Client> listClients() {
+        return clientRepository.findAll();
     }
 }

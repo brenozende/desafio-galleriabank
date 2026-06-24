@@ -14,6 +14,7 @@ import java.net.URI;
 @RestController
 @RequestMapping("/pedidos")
 @RequiredArgsConstructor
+@CrossOrigin
 public class OrdersController {
     private final OrderService orderService;
 
