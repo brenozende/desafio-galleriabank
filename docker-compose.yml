@@ -10,11 +10,27 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U galleriabank -d galleriabank"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: galleriabank-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_PROFILES_ACTIVE: postgres
+      DATABASE_URL: jdbc:postgresql://postgres:5432/galleriabank
+      DATABASE_USERNAME: galleriabank
+      DATABASE_PASSWORD: galleriabank
+
+  frontend:
+    build: ./frontend
+    container_name: galleriabank-frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
 
 volumes:
   postgres_data:
