@@ -4,7 +4,7 @@ API REST para gerenciamento de usuarios, clientes, produtos e pedidos usando Jav
 
 ## Requisitos
 
-- Java 25 ou versao compativel com o `pom.xml`
+- Java 25 ou versão compatível com o `pom.xml`
 
 ## Rodar a API com H2
 
@@ -18,27 +18,27 @@ No Windows:
 mvnw.cmd spring-boot:run
 ```
 
-Por padrao, a aplicacao usa H2 em memoria. O console do H2 fica disponivel em:
+Por padrão, a aplicação usa H2 em memória. O console do H2 fica disponível em:
 
 ```http
 http://localhost:8080/h2-console
 ```
 
-Dados de conexao:
+Dados de conexão:
 
 - JDBC URL: `jdbc:h2:mem:galleriabank`
-- Usuario: `sa`
+- Usuário: `sa`
 - Senha: deixe em branco
 
 ## Rodar com PostgreSQL via Docker
 
-Quando o Docker estiver disponivel, suba o banco:
+Quando o Docker estiver disponível, suba o banco:
 
 ```bash
 docker compose up -d
 ```
 
-O PostgreSQL ficara disponivel em:
+O PostgreSQL ficará disponível em:
 
 - Host: `localhost`
 - Porta: `5432`
